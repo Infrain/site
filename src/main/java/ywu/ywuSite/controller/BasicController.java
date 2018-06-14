@@ -15,8 +15,8 @@ public class BasicController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/first")
+	@RequestMapping("/firsts")
 	public String first() {
-		return "wahaha";
+		return "BYE";
 	}
 }
