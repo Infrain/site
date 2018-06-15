@@ -33,7 +33,7 @@ ul li{
 }
 ul li a{
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 14px;
     line-height: 40px;
     padding: 0 10px;
@@ -42,7 +42,7 @@ ul li a{
 #slider{
     width: 50px;
     height: 40px;
-    background: #ccc40e;
+    background: #faf605;
     position: absolute;
     top: 0;
     left: 0;
@@ -58,8 +58,8 @@ ul li a{
     <div id = 'content'>
 
         <ul>
-            <div id = "slider"></div>
-            <li style="background: #ccc40e;"><a id = "Main" href="###">Home</a></li>
+            <div style= "display: none;" id = "slider"></div>
+            <li style="background: #faf605;"><a id = "Main" href="###">Home</a></li>
             <li ><a href="###">0</a></li>
             <li ><a href="###">1</a></li>
             <li><a href="###">2</a></li>
@@ -75,34 +75,37 @@ ul li a{
 <script type = "text/javascript">
     $("li").mouseenter(function(){
         $("#slider").animate({
-            left:$(this).offset().left-$('li').eq(0).offset().left,
-        },50)
+            left:$(this).offset().left-$('li').eq(0).offset().left
+        },100);
         $("#slider").css({
             width:$(this).width(),
-        })
+        });
+        $("#slider").show();
 
     })
 
     $("ul").mouseleave(function(){
         $("#slider").css({
-            width:'50',
+            width:"50"
         })
         $("#slider").animate({
-            left:"0",
+            left:"0"
         },200)
+        $("#slider").hide();
     })
 
     $("li").click(function(){
         $.ajax({
             url: "/firsts",
             type: "get",
-            dataType: "text",
+            dataType: "JSON",
             success: function(ret){
-                document.getElementById('Main').innerHTML = ret;
+                $("#Main").html(ret["1"]+ret["2"]);
             }
         });
     });
 </script>
+
 
 </body>
 
